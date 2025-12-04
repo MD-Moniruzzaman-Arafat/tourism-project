@@ -26,13 +26,12 @@ export default function RegisterPage() {
           displayName: formData.name,
           photoURL: formData.photoUrl,
         });
-        navigate('/');
+        navigate('/login');
       }
       console.log(res.user);
     } catch (error) {
       setAuthError(error);
     }
-    // console.log(formData);
   };
   return (
     <>
