@@ -1,6 +1,39 @@
-import { Link } from 'react-router';
+import { updateProfile } from 'firebase/auth';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router';
+import useAuth from '../hooks/useAuth';
 
 export default function RegisterPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    photoUrl: '',
+    password: '',
+  });
+  const { createUser, setAuthError } = useAuth();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await createUser(formData.email, formData.password);
+      if (res.user) {
+        await updateProfile(res.user, {
+          displayName: formData.name,
+          photoURL: formData.photoUrl,
+        });
+        navigate('/');
+      }
+      console.log(res.user);
+    } catch (error) {
+      setAuthError(error);
+    }
+    // console.log(formData);
+  };
   return (
     <>
       <div className="hero bg-base-200 min-h-screen">
@@ -9,16 +42,40 @@ export default function RegisterPage() {
             <h1 className="text-5xl font-bold">Register now!</h1>
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 p-2 shadow-2xl">
-            <div className="card-body">
+            <form onSubmit={handleSubmit} className="card-body">
               <fieldset className="fieldset">
                 <label className="label">Name</label>
-                <input type="text" className="input" placeholder="Name" />
+                <input
+                  onChange={handleChange}
+                  value={formData.name}
+                  name="name"
+                  type="text"
+                  className="input"
+                  placeholder="Name"
+                />
                 <label className="label">Email</label>
-                <input type="email" className="input" placeholder="Email" />
+                <input
+                  onChange={handleChange}
+                  value={formData.email}
+                  name="email"
+                  type="email"
+                  className="input"
+                  placeholder="Email"
+                />
                 <label className="label">photoURL</label>
-                <input type="text" className="input" placeholder="photoURL" />
+                <input
+                  onChange={handleChange}
+                  value={formData.photoUrl}
+                  name="photoUrl"
+                  type="text"
+                  className="input"
+                  placeholder="photoURL"
+                />
                 <label className="label">Password</label>
                 <input
+                  onChange={handleChange}
+                  value={formData.password}
+                  name="password"
                   type="password"
                   className="input"
                   placeholder="Password"
@@ -26,7 +83,7 @@ export default function RegisterPage() {
 
                 <button className="btn btn-neutral mt-4">Register</button>
               </fieldset>
-            </div>
+            </form>
             <button className="btn bg-white text-black border-[#e5e5e5] mx-6 mb-5">
               <svg
                 aria-label="Google logo"
