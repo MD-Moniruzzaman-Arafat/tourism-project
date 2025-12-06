@@ -1,7 +1,11 @@
+import Banner from '../components/Banner/Banner';
+import Countries from '../components/Countries/Countries';
+
 export default function HomePage() {
   return (
     <>
-      <h1>Home Page</h1>
+      <Banner />
+      <Countries />
     </>
   );
 }
