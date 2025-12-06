@@ -3,6 +3,7 @@ import App from '../App';
 import HomePage from '../page/HomePage';
 import LoginPage from '../page/LoginPage';
 import RegisterPage from '../page/RegisterPage';
+import { getAllTours } from '../utils/api';
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,8 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
+        loader: getAllTours,
+        HydrateFallback: <p>loading....</p>,
       },
     ],
   },
