@@ -41,6 +41,21 @@ async function run() {
         res.status(500).json({ status: 'fail', message: error.message });
       }
     });
+
+    app.post('/tours', async (req, res) => {
+      try {
+        const tour = await tourismSpots.insertOne(req.body);
+        res.status(201).json({
+          status: 'success',
+          tour,
+        });
+      } catch (error) {
+        res.status(500).json({
+          status: 'error',
+          message: error.message,
+        });
+      }
+    });
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
