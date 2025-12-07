@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 import App from '../App';
+import AddTouristsSpotPage from '../page/AddTouristsSpotPage';
 import HomePage from '../page/HomePage';
 import LoginPage from '../page/LoginPage';
 import RegisterPage from '../page/RegisterPage';
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
         Component: HomePage,
         loader: getAllTours,
         HydrateFallback: <p>loading....</p>,
+      },
+      {
+        path: '/add-tourists-spot',
+        Component: AddTouristsSpotPage,
       },
     ],
   },
