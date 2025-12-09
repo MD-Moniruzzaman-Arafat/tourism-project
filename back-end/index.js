@@ -1,7 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const app = express();
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors');
 const port = process.env.PORT || 8000;
 
@@ -33,6 +33,7 @@ async function run() {
     const tourismSpots = database.collection('tourismSpots');
 
     // api
+    // get
     app.get('/tours', async (req, res) => {
       try {
         const tours = await tourismSpots.find().toArray();
@@ -41,7 +42,7 @@ async function run() {
         res.status(500).json({ status: 'fail', message: error.message });
       }
     });
-
+    // create
     app.post('/tours', async (req, res) => {
       try {
         const tour = await tourismSpots.insertOne(req.body);
@@ -49,6 +50,27 @@ async function run() {
           status: 'success',
           tour,
         });
+      } catch (error) {
+        res.status(500).json({
+          status: 'error',
+          message: error.message,
+        });
+      }
+    });
+
+    // update
+    // delete
+    app.delete('/tours/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await tourismSpots.deleteOne(query);
+
+        if (result.deletedCount === 1) {
+          res.status(200).json({
+            status: 'success',
+          });
+        }
       } catch (error) {
         res.status(500).json({
           status: 'error',
