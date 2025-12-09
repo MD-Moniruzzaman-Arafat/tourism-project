@@ -42,6 +42,17 @@ async function run() {
         res.status(500).json({ status: 'fail', message: error.message });
       }
     });
+    // getOne
+    app.get('/tours/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const tours = await tourismSpots.findOne(query);
+        res.status(200).json({ status: 'success', total: tours.length, tours });
+      } catch (error) {
+        res.status(500).json({ status: 'fail', message: error.message });
+      }
+    });
     // create
     app.post('/tours', async (req, res) => {
       try {
