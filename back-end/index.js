@@ -59,6 +59,28 @@ async function run() {
     });
 
     // update
+    app.patch('/tours/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const options = { upsert: true };
+        const updateDoc = {
+          $set: req.body,
+        };
+        const result = await tourismSpots.updateOne(filter, updateDoc, options);
+        if (result) {
+          res.status(200).json({
+            status: 'success',
+            result,
+          });
+        }
+      } catch (error) {
+        res.status(500).json({
+          status: 'error',
+          message: error.message,
+        });
+      }
+    });
     // delete
     app.delete('/tours/:id', async (req, res) => {
       try {
