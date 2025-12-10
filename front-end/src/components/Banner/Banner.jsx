@@ -8,7 +8,8 @@ import 'swiper/css/pagination';
 // import required modules
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
-export default function Banner() {
+export default function Banner({ data }) {
+  console.log(data);
   return (
     <>
       <Swiper
@@ -25,18 +26,11 @@ export default function Banner() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper container mx-auto rounded-2xl my-10"
       >
-        <SwiperSlide>
-          <img src="https://i.ibb.co.com/j9wXsYwv/6967567.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://i.ibb.co.com/j9wXsYwv/6967567.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://i.ibb.co.com/j9wXsYwv/6967567.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://i.ibb.co.com/j9wXsYwv/6967567.jpg" alt="" />
-        </SwiperSlide>
+        {data.tours.map((item) => (
+          <SwiperSlide key={item._id}>
+            <img src={item.image} alt="" />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

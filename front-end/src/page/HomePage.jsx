@@ -8,7 +8,7 @@ export default function HomePage() {
   console.log(data);
   return (
     <>
-      <Banner />
+      <Banner data={data} />
       <Countries />
       <TouristsSpot />
     </>
