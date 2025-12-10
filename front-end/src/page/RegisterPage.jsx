@@ -1,6 +1,6 @@
 import { updateProfile } from 'firebase/auth';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 
 export default function RegisterPage() {
@@ -10,8 +10,9 @@ export default function RegisterPage() {
     photoUrl: '',
     password: '',
   });
-  const { createUser, setAuthError } = useAuth();
+  const { createUser, setAuthError, googleLogin } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +30,16 @@ export default function RegisterPage() {
         navigate('/login');
       }
       console.log(res.user);
+    } catch (error) {
+      setAuthError(error);
+    }
+  };
+  const handleGoogleLogin = async () => {
+    try {
+      const res = await googleLogin();
+      if (res.user) {
+        navigate(`${location.state ? location.state : '/'}`);
+      }
     } catch (error) {
       setAuthError(error);
     }
@@ -83,7 +94,10 @@ export default function RegisterPage() {
                 <button className="btn btn-neutral mt-4">Register</button>
               </fieldset>
             </form>
-            <button className="btn bg-white text-black border-[#e5e5e5] mx-6 mb-5">
+            <button
+              onClick={handleGoogleLogin}
+              className="btn bg-white text-black border-[#e5e5e5] mx-6 mb-5"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"

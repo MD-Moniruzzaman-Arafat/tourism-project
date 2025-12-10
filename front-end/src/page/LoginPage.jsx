@@ -7,7 +7,7 @@ export default function LoginPage() {
     email: '',
     password: '',
   });
-  const { loginUser, setAuthError } = useAuth();
+  const { loginUser, setAuthError, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,6 +26,16 @@ export default function LoginPage() {
       setAuthError(error);
     }
     console.log(formData);
+  };
+  const handleGoogleLogin = async () => {
+    try {
+      const res = await googleLogin();
+      if (res.user) {
+        navigate(`${location.state ? location.state : '/'}`);
+      }
+    } catch (error) {
+      setAuthError(error);
+    }
   };
   return (
     <>
@@ -59,7 +69,10 @@ export default function LoginPage() {
                 <button className="btn btn-neutral mt-4">Login</button>
               </fieldset>
             </form>
-            <button className="btn bg-white text-black border-[#e5e5e5] mx-6 mb-5">
+            <button
+              onClick={handleGoogleLogin}
+              className="btn bg-white text-black border-[#e5e5e5] mx-6 mb-5"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"
