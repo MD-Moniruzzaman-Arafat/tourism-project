@@ -7,7 +7,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
 // import required modules
-import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
+import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 export default function Countries() {
   return (
@@ -25,55 +25,39 @@ export default function Countries() {
           modifier: 1,
           slideShadows: true,
         }}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
         pagination={true}
-        modules={[Autoplay, EffectCoverflow, Pagination]}
+        modules={[EffectCoverflow, Pagination]}
         className="mySwiper container mx-auto my-10"
       >
         <SwiperSlide>
-          <img
-            className="w-2xl mx-auto rounded-2xl"
-            src="https://i.ibb.co.com/qM4h85xp/bangladesh-flag-wrinkled-dark-background-3d-render-1.jpg"
-          />
+          <div className="w-2xl mx-auto rounded-2xl bg-black h-[300px] flex justify-center items-center text-amber-50">
+            <h1 className="uppercase text-5xl font-bold">Bangladesh</h1>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            className="w-2xl mx-auto rounded-2xl"
-            src="https://i.ibb.co.com/qM4h85xp/bangladesh-flag-wrinkled-dark-background-3d-render-1.jpg"
-          />
+          <div className="w-2xl mx-auto rounded-2xl bg-black h-[300px] flex justify-center items-center text-amber-50">
+            <h1 className="uppercase text-5xl font-bold">Thailand</h1>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            className="w-2xl mx-auto rounded-2xl"
-            src="https://i.ibb.co.com/qM4h85xp/bangladesh-flag-wrinkled-dark-background-3d-render-1.jpg"
-          />
+          <div className="w-2xl mx-auto rounded-2xl bg-black h-[300px] flex justify-center items-center text-amber-50">
+            <h1 className="uppercase text-5xl font-bold">Indonesia</h1>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            className="w-2xl mx-auto rounded-2xl"
-            src="https://i.ibb.co.com/qM4h85xp/bangladesh-flag-wrinkled-dark-background-3d-render-1.jpg"
-          />
+          <div className="w-2xl mx-auto rounded-2xl bg-black h-[300px] flex justify-center items-center text-amber-50">
+            <h1 className="uppercase text-5xl font-bold">Malaysia</h1>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            className="w-2xl mx-auto rounded-2xl"
-            src="https://i.ibb.co.com/qM4h85xp/bangladesh-flag-wrinkled-dark-background-3d-render-1.jpg"
-          />
+          <div className="w-2xl mx-auto rounded-2xl bg-black h-[300px] flex justify-center items-center text-amber-50">
+            <h1 className="uppercase text-5xl font-bold">Vietnam</h1>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            className="w-2xl mx-auto rounded-2xl"
-            src="https://i.ibb.co.com/qM4h85xp/bangladesh-flag-wrinkled-dark-background-3d-render-1.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-2xl mx-auto rounded-2xl"
-            src="https://i.ibb.co.com/qM4h85xp/bangladesh-flag-wrinkled-dark-background-3d-render-1.jpg"
-          />
+          <div className="w-2xl mx-auto rounded-2xl bg-black h-[300px] flex justify-center items-center text-amber-50">
+            <h1 className="uppercase text-5xl font-bold">Cambodia</h1>
+          </div>
         </SwiperSlide>
       </Swiper>
     </>

@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <Banner data={data} />
       <Countries />
-      <TouristsSpot />
+      <TouristsSpot data={data} />
     </>
   );
 }

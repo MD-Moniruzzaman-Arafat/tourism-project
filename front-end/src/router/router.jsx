@@ -2,10 +2,11 @@ import { createBrowserRouter } from 'react-router';
 import App from '../App';
 import Loading from '../components/Loading/Loading';
 import AddTouristsSpotPage from '../page/AddTouristsSpotPage';
+import DetailsPage from '../page/DetailsPage';
 import HomePage from '../page/HomePage';
 import LoginPage from '../page/LoginPage';
 import RegisterPage from '../page/RegisterPage';
-import { getAllTours } from '../utils/api';
+import { getAllTours, getTours } from '../utils/api';
 import PrivateRoute from './PrivateRoute';
 
 export const router = createBrowserRouter([
@@ -27,6 +28,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         HydrateFallback: Loading,
+      },
+      {
+        path: '/details/:id',
+        element: (
+          <PrivateRoute>
+            <DetailsPage />
+          </PrivateRoute>
+        ),
+        loader: getTours,
       },
     ],
   },
