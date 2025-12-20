@@ -55,7 +55,7 @@ export default function Navbar() {
               <Link to={'/'}>Home</Link>
             </li>
             <li>
-              <a>All Tourists Spot</a>
+              <Link to={'/all-tourists-spot'}>All Tourists Spot</Link>
             </li>
             <li>
               <Link to={'/add-tourists-spot'}>Add Tourists Spot</Link>

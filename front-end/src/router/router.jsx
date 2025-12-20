@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router';
 import App from '../App';
 import Loading from '../components/Loading/Loading';
 import AddTouristsSpotPage from '../page/AddTouristsSpotPage';
+import AllTouristsSpotPage from '../page/AllTouristsSpotPage';
 import DetailsPage from '../page/DetailsPage';
 import HomePage from '../page/HomePage';
 import LoginPage from '../page/LoginPage';
@@ -37,6 +38,17 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: getTours,
+        HydrateFallback: Loading,
+      },
+      {
+        path: '/all-tourists-spot',
+        element: (
+          <PrivateRoute>
+            <AllTouristsSpotPage />
+          </PrivateRoute>
+        ),
+        loader: getAllTours,
+        HydrateFallback: Loading,
       },
     ],
   },

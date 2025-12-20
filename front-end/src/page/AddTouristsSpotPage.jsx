@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import useAuth from '../hooks/useAuth';
 import { createTour } from '../utils/api';
 
 export default function AddTouristsSpotPage() {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     image: '',
     touristsSpotName: '',
@@ -12,8 +14,8 @@ export default function AddTouristsSpotPage() {
     seasonality: '',
     travelTime: '',
     totalVisitorsPerYear: '',
-    userEmail: '',
-    UserName: '',
+    userEmail: user.email,
+    UserName: user.displayName,
   });
 
   const handleChange = (e) => {
@@ -122,6 +124,7 @@ export default function AddTouristsSpotPage() {
                 />
                 <label className="label">User Email</label>
                 <input
+                  disabled
                   name="userEmail"
                   onChange={handleChange}
                   value={formData.userEmail}
@@ -131,6 +134,7 @@ export default function AddTouristsSpotPage() {
                 />
                 <label className="label">User Name</label>
                 <input
+                  disabled
                   name="UserName"
                   onChange={handleChange}
                   value={formData.UserName}
