@@ -6,8 +6,9 @@ import AllTouristsSpotPage from '../page/AllTouristsSpotPage';
 import DetailsPage from '../page/DetailsPage';
 import HomePage from '../page/HomePage';
 import LoginPage from '../page/LoginPage';
+import MyList from '../page/MyList';
 import RegisterPage from '../page/RegisterPage';
-import { getAllTours, getTours } from '../utils/api';
+import { getAllTours, getTours, myListTours } from '../utils/api';
 import PrivateRoute from './PrivateRoute';
 
 export const router = createBrowserRouter([
@@ -48,6 +49,16 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: getAllTours,
+        HydrateFallback: Loading,
+      },
+      {
+        path: 'my-list',
+        element: (
+          <PrivateRoute>
+            <MyList />
+          </PrivateRoute>
+        ),
+        loader: myListTours,
         HydrateFallback: Loading,
       },
     ],

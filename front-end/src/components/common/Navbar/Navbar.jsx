@@ -43,7 +43,7 @@ export default function Navbar() {
                 <Link to={'/add-tourists-spot'}>Add Tourists Spot</Link>
               </li>
               <li>
-                <a>My List</a>
+                <Link to={'/my-list'}>My List</Link>
               </li>
             </ul>
           </div>
@@ -61,7 +61,7 @@ export default function Navbar() {
               <Link to={'/add-tourists-spot'}>Add Tourists Spot</Link>
             </li>
             <li>
-              <a>My List</a>
+              <Link to={'/my-list'}>My List</Link>
             </li>
           </ul>
         </div>

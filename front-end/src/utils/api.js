@@ -51,3 +51,19 @@ export const getTours = async ({ params }) => {
     return { status: 'fail', message: error.message };
   }
 };
+
+export const myListTours = async () => {
+  try {
+    const res = await fetch(`http://localhost:5000/tours`);
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch tours: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('GET Error:', error.message);
+    return { status: 'fail', message: error.message };
+  }
+};
