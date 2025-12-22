@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { createTour } from '../utils/api';
 
@@ -17,6 +18,7 @@ export default function AddTouristsSpotPage() {
     userEmail: user.email,
     UserName: user.displayName,
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +29,7 @@ export default function AddTouristsSpotPage() {
     const res = await createTour(formData);
     console.log(res);
     console.log(formData);
+    navigate('/my-list');
   };
   return (
     <>

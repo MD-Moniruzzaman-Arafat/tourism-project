@@ -89,3 +89,19 @@ export const myListTours = async () => {
     return { status: 'fail', message: error.message };
   }
 };
+
+export const deleteTour = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:5000/tours/${id}`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) {
+      throw new Error('Failed to delete tour');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('GET Error:', error.message);
+    return { status: 'fail', message: error.message };
+  }
+};

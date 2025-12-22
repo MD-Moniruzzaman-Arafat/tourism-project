@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 export default function MyList() {
   const result = useLoaderData();
   const { user } = useAuth();
-  const data = result.tours.filter((item) => item.userEmail === user.email);
+  const data = result.tours.filter((item) => item?.userEmail === user?.email);
   console.log(data);
   return (
     <>

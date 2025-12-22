@@ -3,7 +3,7 @@ import Modal from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { useLoaderData, useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
-import { updateTours } from '../utils/api';
+import { deleteTour, updateTours } from '../utils/api';
 
 export default function DetailsPage() {
   const [open, setOpen] = useState(false);
@@ -40,6 +40,11 @@ export default function DetailsPage() {
     console.log(formData);
     navigate(`/details/${data._id}`);
     onCloseModal();
+  };
+  const handleDelete = async () => {
+    const res = await deleteTour(data._id);
+    console.log(res);
+    navigate('/my-list');
   };
   return (
     <>
@@ -210,7 +215,9 @@ export default function DetailsPage() {
         </div>
 
         <div className="flex justify-between my-5 flex-wrap">
-          <button className="btn">Delete</button>
+          <button onClick={handleDelete} className="btn">
+            Delete
+          </button>
           <button onClick={onOpenModal} className="btn">
             Edit
           </button>
