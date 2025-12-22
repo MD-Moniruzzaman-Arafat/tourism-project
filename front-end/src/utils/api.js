@@ -52,6 +52,28 @@ export const getTours = async ({ params }) => {
   }
 };
 
+export const updateTours = async ({ params, updatedData }) => {
+  try {
+    const res = await fetch(`http://localhost:5000/tours/${params}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to update data');
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('GET Error:', error.message);
+    return { status: 'fail', message: error.message };
+  }
+};
+
 export const myListTours = async () => {
   try {
     const res = await fetch(`http://localhost:5000/tours`);

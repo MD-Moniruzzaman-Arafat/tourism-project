@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import Card from '../Card/Card';
 
 export default function TouristsSpot({ data }) {
@@ -8,6 +9,14 @@ export default function TouristsSpot({ data }) {
         {data.tours.slice(0, 6).map((item) => (
           <Card key={item._id} item={item} />
         ))}
+      </div>
+      <div>
+        <button
+          to={'/all-tourists-spot'}
+          className="btn btn-primary btn-outline block mx-auto mb-10"
+        >
+          <Link to={'/all-tourists-spot'}>See All</Link>
+        </button>
       </div>
     </>
   );
