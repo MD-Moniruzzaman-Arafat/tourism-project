@@ -7,6 +7,7 @@ import DetailsPage from '../page/DetailsPage';
 import HomePage from '../page/HomePage';
 import LoginPage from '../page/LoginPage';
 import MyList from '../page/MyList';
+import NotFound from '../page/NotFound';
 import RegisterPage from '../page/RegisterPage';
 import { getAllTours, getTours, myListTours } from '../utils/api';
 import PrivateRoute from './PrivateRoute';
@@ -65,4 +66,5 @@ export const router = createBrowserRouter([
   },
   { path: '/login', Component: LoginPage },
   { path: '/register', Component: RegisterPage },
+  { path: '*', Component: NotFound },
 ]);
